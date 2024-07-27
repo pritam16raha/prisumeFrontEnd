@@ -1,5 +1,4 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
 import styled from "styled-components";
 // import { mobile } from "../responsive";
 

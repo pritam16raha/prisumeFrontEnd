@@ -37,7 +37,7 @@ const FooterContainer = styled.footer`
   justify-content: space-evenly;
   background-color: #d0d8ff;
   border-radius: 0.5rem;
-  padding: 2.5rem;
+  padding: 2.5rem 0;
 
   span{
     margin-top: 1rem;

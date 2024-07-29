@@ -26,10 +26,10 @@ export default function Navbar() {
 
         <ul>
           <li>
-            <a href="#home">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
-            <a href="#resume">Create Resume</a>
+            <a href="/resume">Create Resume</a>
           </li>
         </ul>
         <div className="nav-button">
@@ -48,12 +48,12 @@ export default function Navbar() {
       <ResponsiveNav state={navbarState}>
         <ul>
           <li>
-            <a href="#home" onClick={() => setNavbarState(false)}>
+            <a href="/" onClick={() => setNavbarState(false)}>
               Home
             </a>
           </li>
           <li>
-            <a href="#resume" onClick={() => setNavbarState(false)}>
+            <a href="/resume" onClick={() => setNavbarState(false)}>
               Create Resume
             </a>
           </li>

@@ -3,6 +3,8 @@ import Editor from '../editor/Editor'
 import ReactToPrint from 'react-to-print';
 import { ArrowDown } from 'react-feather';
 import Resume from '../resume/Resume';
+import styled from 'styled-components';
+import styles from './Body.module.css'
 
 const Body = () => {
 
@@ -59,7 +61,7 @@ const Body = () => {
 
 
   return (
-    <div><Editor/>
+    <div className={styles.main}><Editor/>
     
     <ReactToPrint
           trigger={() => {
@@ -71,7 +73,7 @@ const Body = () => {
           }}
           content={() => resumeRef.current}
         />
-        <div>
+        <Main>
         <Editor
           sections={sections}
           information={resumeInformation}
@@ -83,10 +85,17 @@ const Body = () => {
           information={resumeInformation}
           activeColor={activeColor}
         />
-        </div>
+        </Main>
     
     </div>
   )
 }
 
 export default Body
+
+const Main = styled.div`
+    display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+`

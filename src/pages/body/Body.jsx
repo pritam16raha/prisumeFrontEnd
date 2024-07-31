@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Editor from '../editor/Editor'
 import ReactToPrint from 'react-to-print';
 import { ArrowDown } from 'react-feather';
@@ -59,6 +59,9 @@ const Body = () => {
     },
   });
 
+  useEffect(() => {
+    console.log(resumeInformation)
+  },[resumeInformation])
 
   return (
     <div className={styles.main}><Editor/>
@@ -86,7 +89,6 @@ const Body = () => {
           activeColor={activeColor}
         />
         </Main>
-    
     </div>
   )
 }

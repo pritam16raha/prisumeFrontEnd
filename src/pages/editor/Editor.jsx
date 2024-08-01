@@ -18,7 +18,7 @@ const Editor = (props) => {
   );
 
   //hook to change the chips in work experiences
-  const [ activeDetailIndex, setActiveDetailIndex ] = useState(0)
+  const [activeDetailIndex, setActiveDetailIndex] = useState(0);
 
   const [sectionTitle, setSectionTitle] = useState(sections[firstSectionKey]);
 
@@ -398,7 +398,9 @@ const Editor = (props) => {
         };
 
         // const tempDetails = [ ...information[sections.workExp]?.details ];
-        const tempDetails = information[sections.workExp]?.details ? [...information[sections.workExp].details] : [];
+        const tempDetails = information[sections.workExp]?.details
+          ? [...information[sections.workExp].details]
+          : [];
         tempDetails[activeDetailIndex] = tempDetail;
 
         props.setInformation((prev) => ({
@@ -418,10 +420,12 @@ const Editor = (props) => {
           title: values.title,
           overview: values.overview,
           github: values.github,
-          points: values.points
+          points: values.points,
         };
 
-        const tempDetails = information[sections.project]?.details ? [...information[sections.project].details] : [];
+        const tempDetails = information[sections.project]?.details
+          ? [...information[sections.project].details]
+          : [];
         tempDetails[activeDetailIndex] = tempDetail;
 
         props.setInformation((prev) => ({
@@ -444,7 +448,9 @@ const Editor = (props) => {
         };
 
         //const tempDetails = [...information[sections.education]?.details];
-        const tempDetails = information[sections.workExp]?.education ? [...information[sections.education].details] : [];
+        const tempDetails = information[sections.workExp]?.education
+          ? [...information[sections.education].details]
+          : [];
         tempDetails[activeDetailIndex] = tempDetail;
 
         props.setInformation((prev) => ({
@@ -503,8 +509,38 @@ const Editor = (props) => {
   };
 
   const handleAddNew = () => {
-    
-  }
+    const details = activeInformation?.details;
+    if (!details) return;
+    const lastDetails = details.slice(-1)[0];
+    if (!Object.keys(lastDetails).length) return; //object of key returns an array, so check must on length
+    details?.push({});
+
+    props.setInformation((prev) => ({
+      ...prev,
+      [sections[activeSectionKey]]: {
+        ...information[sections[activeSectionKey]],
+        details: details,
+      },
+    }));
+    setActiveDetailIndex(details?.length - 1);
+  };
+
+  const handleDeleteNew = (index) => {
+    const details = activeInformation?.details
+      ? [...activeInformation?.details]
+      : "";
+    if (!details) return;
+    details.splice(index, 1);
+
+    props.setInformation((prev) => ({
+      ...prev,
+      [sections[activeSectionKey]]: {
+        ...information[sections[activeSectionKey]],
+        details: details,
+      },
+    }));
+    setActiveDetailIndex((prev) => (prev === index ? 0 : prev - 1));
+  };
 
   useEffect(() => {
     const activeInfo = information[sections[activeSectionKey]];
@@ -577,8 +613,31 @@ const Editor = (props) => {
 
   useEffect(() => {
     setActiveInformation(information[sections[activeSectionKey]]);
-  }, [information])
+  }, [information]);
 
+  useEffect(()=>{
+    const details = activeInformation?.details;
+    if(!details) return
+
+    const activeInfo = information[sections[activeSectionKey]];
+    
+    setValues({
+      overview: activeInfo.details[activeDetailIndex]?.overview || "",
+      link: activeInfo.details[activeDetailIndex]?.link || "",
+      certificationLink:
+        activeInfo.details[activeDetailIndex]?.certificationLink || "",
+      companyName: activeInfo.details[activeDetailIndex]?.companyName || "",
+      location: activeInfo.details[activeDetailIndex]?.location || "",
+      startDate: activeInfo.details[activeDetailIndex]?.startDate || "",
+      endDate: activeInfo.details[activeDetailIndex]?.endDate || "",
+      points: activeInfo.details[activeDetailIndex]?.points || "",
+      title: activeInfo.details[activeDetailIndex]?.title || "",
+      linkedin: activeInfo.details[activeDetailIndex]?.linkedin || "",
+      github: activeInfo.details[activeDetailIndex]?.github || "",
+      college: activeInfo.details[activeDetailIndex]?.college || "",
+    })
+
+  },[activeDetailIndex])
 
   return (
     <div className={styles.container}>
@@ -606,20 +665,34 @@ const Editor = (props) => {
         <div className={styles.chips}>
           {activeInformation?.details
             ? activeInformation?.details?.map((item, index) => (
-                <div className={`${styles.chip} ${activeDetailIndex === index? styles.active : ""}`} key={item.title + index} onClick={() => setActiveDetailIndex(index)}>
+                <div
+                  className={`${styles.chip} ${
+                    activeDetailIndex === index ? styles.active : ""
+                  }`}
+                  key={item.title + index}
+                  onClick={() => setActiveDetailIndex(index)}
+                >
                   <p>
                     {sections[activeSectionKey]} {index + 1}
                   </p>
-                  <MdCancel />
+                  <MdCancel
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleDeleteNew(index);
+                    }}
+                  />
                 </div>
               ))
             : ""}
 
-            {
-              activeInformation?.details && activeInformation?.details?.length > 0 ? (
-                <div className={styles.new} onClick={handleAddNew}>+New</div>
-              ) : ( "")
-            }
+          {activeInformation?.details &&
+          activeInformation?.details?.length > 0 ? (
+            <div className={styles.new} onClick={handleAddNew}>
+              +New
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         {generateBody()}
         <button onClick={handleSubmission}>Save</button>

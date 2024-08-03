@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
-import Editor from '../editor/Editor'
-import ReactToPrint from 'react-to-print';
-import { ArrowDown } from 'react-feather';
-import Resume from '../resume/Resume';
-import styled from 'styled-components';
-import styles from './Body.module.css'
+import React, { useEffect, useRef, useState } from "react";
+import Editor from "../editor/Editor";
+import ReactToPrint from "react-to-print";
+import { ArrowDown } from "react-feather";
+import Resume from "../resume/Resume";
+import styled from "styled-components";
+import styles from "./Body.module.css";
 
 const Body = () => {
-
   const colors = ["#239ce2", "#48bb78", "#0bc5ea", "#a0aec0", "#ed8936"];
   const sections = {
     basicInfo: "Basic Info",
@@ -60,23 +59,12 @@ const Body = () => {
   });
 
   useEffect(() => {
-    console.log(resumeInformation)
-  },[resumeInformation])
+    console.log(resumeInformation);
+  }, [resumeInformation]);
 
   return (
-    <div className={styles.main}><Editor/>
-    
-    <ReactToPrint
-          trigger={() => {
-            return (
-              <button>
-                Download <ArrowDown />
-              </button>
-            );
-          }}
-          content={() => resumeRef.current}
-        />
-        <Main>
+    <div className={styles.main}>
+      <Main>
         <Editor
           sections={sections}
           information={resumeInformation}
@@ -88,16 +76,34 @@ const Body = () => {
           information={resumeInformation}
           activeColor={activeColor}
         />
-        </Main>
-    </div>
-  )
-}
 
-export default Body
+        <ReactToPrint
+          trigger={() => {
+            return (
+              <button className="resume-button">
+                {" "}
+                Download <ArrowDown />{" "}
+              </button>
+            );
+          }}
+          content={() => resumeRef.current}
+        />
+      </Main>
+    </div>
+  );
+};
+
+export default Body;
 
 const Main = styled.div`
-    display: flex;
+  display: grid;
   flex-direction: column;
   gap: 30px;
   width: 100%;
-`
+
+  .resume-button{
+    width: full;
+    margin: auto;
+    cursor: pointer;
+  }
+`;

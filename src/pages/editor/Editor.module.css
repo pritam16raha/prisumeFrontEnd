@@ -1,7 +1,7 @@
 .container {
-  min-width: 550px;
-  min-height: 450px;
-  max-width: 750px;
+  min-width: 700px;
+  min-height: 50px;
+  max-width: 950px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -9,6 +9,8 @@
   padding-top: 5px;
   height: fit-content;
   margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {
@@ -37,8 +39,9 @@
 }
 
 .header .active {
-  border-bottom: 2px solid #239ce2;
-  color: #239ce2;
+  color: #008080;
+  background-color: #ffd700;
+  border-radius: 7px;
 }
 
 .body {
@@ -112,7 +115,7 @@
   width: fit-content;
   padding: 8px 16px;
   border-radius: 5px;
-  background-color: #239ce2;
+  background-color: #008080;
   color: #fff;
   outline: none;
   border: none;

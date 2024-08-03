@@ -104,11 +104,11 @@ const Nav = styled.nav`
     li {
       a {
         text-decoration: none;
-        color: #0077b6;
+        color: #008080;
         font-size: 1.2rem;
         transition: 0.1s ease-in-out;
         &:hover {
-          color: #023e8a;
+          color: #034d4d;
         }
       }
       &:first-of-type {
@@ -125,12 +125,12 @@ const Nav = styled.nav`
     border-radius: 1rem;
     border: none;
     color: white;
-    background-color: #48cae4;
+    background-color: #9c9c9c;
     font-size: 15px;
     letter-spacing: 0.1rem;
     transition: 0.3s ease-in-out;
     &:hover {
-      background-color: #023e8a;
+      background-color: #035858;
     }
   }
   @media screen and (min-width: 280px) and (max-width: 1080px) {
@@ -172,16 +172,16 @@ const ResponsiveNav = styled.div`
 
       a {
         text-decoration: none;
-        color: #0077b6;
+        color: #008080;
         font-size: 1.2rem;
         transition: 0.1s ease-in-out;
         &:hover {
-          color: #023e8a;
+          color: #034d4d;
         }
       }
       &:first-of-type {
         a {
-          color: #023e8a;
+          color: #008080;
           font-weight: 900;
         }
       }

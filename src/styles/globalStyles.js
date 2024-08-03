@@ -31,7 +31,7 @@ export const Heading = styled.h2`
 	text-align: center;
 	line-height: 1.1;
 	font-weight: 600;
-	color: ${({ lightText }) => (lightText ? '#f7f8fa' : '1c2237')};
+	color: ${({ lightText }) => (lightText ? '#008080' : 'f7f8fa')};
 `;
 
 export default GlobalStyle;

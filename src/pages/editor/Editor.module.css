@@ -1,7 +1,7 @@
 .container {
-  min-width: 700px;
   min-height: 50px;
-  max-width: 950px;
+  min-width: 700px;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -11,13 +11,19 @@
   margin: 0 auto;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  background-color: #d4edfc;
+  border-radius: 10px;
 }
 
 .header {
   display: flex;
+  width: 900px;
+  justify-content: center;
   gap: 10px;
   overflow-x: auto;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(0, 0, 0, 1);
 }
 
 .header::-webkit-scrollbar {

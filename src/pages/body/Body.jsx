@@ -96,10 +96,10 @@ const Body = () => {
 export default Body;
 
 const Main = styled.div`
-  display: grid;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
+  /* display: grid; */
+  /* flex-direction: column; */
+  /* gap: 30px; */
+  /* width: 100%; */
 
   .resume-button{
     width: full;

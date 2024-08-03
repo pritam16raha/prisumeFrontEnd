@@ -1,35 +1,35 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Resume.module.css";
 import {
-    FaGithub,
-    FaLinkedin,
-    FaGlobe,
-    FaPaperclip,
-    FaMapMarkerAlt,
-    FaPhone
-  } from "react-icons/fa";
-  import { SlCalender } from "react-icons/sl";
-  import { CiMail } from "react-icons/ci";
+  FaGithub,
+  FaLinkedin,
+  FaGlobe,
+  FaPaperclip,
+  FaMapMarkerAlt,
+  FaPhone,
+} from "react-icons/fa";
+import { SlCalender } from "react-icons/sl";
+import { CiMail } from "react-icons/ci";
 
 const Resume = (props, ref) => {
+  const information = props.information;
+  const sections = props.sections;
+  const [source, setSource] = useState();
+  const [target, setTarget] = useState("");
 
-    const information = props.information;
-    const sections = props.sections;
+  const [columns, setColumns] = useState([[], []]);
 
-  
-    const [columns, setColumns] = useState([[], []]);
-  
-    const info = {
-      workExp: information[sections.workExp],
-      project: information[sections.project],
-      achievement: information[sections.achievement],
-      education: information[sections.education],
-      basicInfo: information[sections.basicInfo],
-      summary: information[sections.summary],
-      other: information[sections.other],
-    };
-  
-    const getFormattedDate = (value) => {
+  const info = {
+    workExp: information[sections.workExp],
+    project: information[sections.project],
+    achievement: information[sections.achievement],
+    education: information[sections.education],
+    basicInfo: information[sections.basicInfo],
+    summary: information[sections.summary],
+    other: information[sections.other],
+  };
+
+  const getFormattedDate = (value) => {
     if (!value) return "";
     const date = new Date(value);
 
@@ -43,6 +43,9 @@ const Resume = (props, ref) => {
         className={`${styles.section} ${
           info.workExp?.sectionTitle ? "" : styles.hidden
         }`}
+        draggable
+        onDragOver={() => setTarget(info.workExp?.id)}
+        onDragEnd={() => setSource(info.workExp?.id)}
       >
         <div className={styles.sectionTitle}>{info.workExp.sectionTitle}</div>
         <div className={styles.content}>
@@ -103,6 +106,9 @@ const Resume = (props, ref) => {
         className={`${styles.section} ${
           info.project?.sectionTitle ? "" : styles.hidden
         }`}
+        draggable
+        onDragOver={() => setTarget(info.project?.id)}
+        onDragEnd={() => setSource(info.project?.id)}
       >
         <div className={styles.sectionTitle}>{info.project.sectionTitle}</div>
         <div className={styles.content}>
@@ -156,6 +162,9 @@ const Resume = (props, ref) => {
         className={`${styles.section} ${
           info.education?.sectionTitle ? "" : styles.hidden
         }`}
+        draggable
+        onDragOver={() => setTarget(info.education?.id)}
+        onDragEnd={() => setSource(info.education?.id)}
       >
         <div className={styles.sectionTitle}>
           {info.education?.sectionTitle}
@@ -192,6 +201,9 @@ const Resume = (props, ref) => {
         className={`${styles.section} ${
           info.achievement?.sectionTitle ? "" : styles.hidden
         }`}
+        draggable
+        onDragOver={() => setTarget(info.achievement?.id)}
+        onDragEnd={() => setSource(info.achievement?.id)}
       >
         <div className={styles.sectionTitle}>
           {info.achievement?.sectionTitle}
@@ -217,6 +229,9 @@ const Resume = (props, ref) => {
         className={`${styles.section} ${
           info.summary?.sectionTitle ? "" : styles.hidden
         }`}
+        draggable
+        onDragOver={() => setTarget(info.summary?.id)}
+        onDragEnd={() => setSource(info.summary?.id)}
       >
         <div className={styles.sectionTitle}>{info.summary?.sectionTitle}</div>
         <div className={styles.content}>
@@ -230,6 +245,9 @@ const Resume = (props, ref) => {
         className={`${styles.section} ${
           info.other?.sectionTitle ? "" : styles.hidden
         }`}
+        draggable
+        onDragOver={() => setTarget(info.other?.id)}
+        onDragEnd={() => setSource(info.other?.id)}
       >
         <div className={styles.sectionTitle}>{info.other?.sectionTitle}</div>
         <div className={styles.content}>
@@ -239,7 +257,6 @@ const Resume = (props, ref) => {
     ),
   };
 
-
   useEffect(() => {
     setColumns([
       [sections.project, sections.education, sections.summary],
@@ -247,6 +264,40 @@ const Resume = (props, ref) => {
     ]);
   }, []);
 
+  //swap the source and target
+  const swapSourceTarget = (source, target) => {
+    if (!source || !target) return;
+    const tempColumns = [[...columns[0]], [...columns[1]]];
+
+    let sourceRowIndex = tempColumns[0].findIndex((item) => item === source);
+    let sourceColumnIndex = 0;
+    if (sourceRowIndex < 0) {
+      sourceColumnIndex = 1;
+      sourceRowIndex = tempColumns[1].findIndex((item) => item === source);
+    }
+
+    //for target also
+    let targetRowIndex = tempColumns[0].findIndex((item) => item === target);
+    let targetColumnIndex = 0;
+    if (targetRowIndex < 0) {
+      targetColumnIndex = 1;
+      targetRowIndex = tempColumns[1].findIndex((item) => item === target);
+    }
+
+    const tempSource = tempColumns[sourceColumnIndex][sourceRowIndex];
+    tempColumns[sourceColumnIndex][sourceRowIndex] =
+      tempColumns[targetColumnIndex][targetRowIndex];
+
+    tempColumns[targetColumnIndex][targetRowIndex] = tempSource;
+    setColumns(tempColumns);
+  };
+
+  //   console.log(`Source - ${source} , Target - ${target}`)
+
+  useEffect(() => {
+    if (!source || !target) return;
+    swapSourceTarget(source, target);
+  }, [source]);
 
   return (
     <div>
@@ -297,7 +348,7 @@ const Resume = (props, ref) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Resume
+export default Resume;

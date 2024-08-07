@@ -70,6 +70,21 @@ const Body = () => {
           information={resumeInformation}
           setInformation={setResumeInformation}
         />
+
+        <div className={styles.colors}>
+          {/* <h2>Text:</h2> */}
+          {colors.map((item) => (
+            <span
+              key={item}
+              style={{ backgroundColor: item }}
+              className={`${styles.color} ${
+                activeColor === item ? styles.active : ""
+              }`}
+              onClick={() => setActiveColor(item)}
+            />
+          ))}
+        </div>
+
         <Resume
           ref={resumeRef}
           sections={sections}
@@ -96,12 +111,17 @@ const Body = () => {
 export default Body;
 
 const Main = styled.div`
-  /* display: grid; */
+  display: grid;
   /* flex-direction: column; */
   /* gap: 30px; */
   /* width: 100%; */
 
-  .resume-button{
+  h2{
+    margin: 0;
+    /* margin-top: 0; */
+  }
+
+  .resume-button {
     width: full;
     margin: auto;
     cursor: pointer;

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import styles from "./Resume.module.css";
 import {
   FaGithub,
@@ -11,13 +11,16 @@ import {
 import { SlCalender } from "react-icons/sl";
 import { CiMail } from "react-icons/ci";
 
-const Resume = (props, ref) => {
+const Resume = forwardRef((props, ref) => {
+
   const information = props.information;
   const sections = props.sections;
   const [source, setSource] = useState();
   const [target, setTarget] = useState("");
 
   const [columns, setColumns] = useState([[], []]);
+
+  const containerReference = useRef();
 
   const info = {
     workExp: information[sections.workExp],
@@ -299,9 +302,19 @@ const Resume = (props, ref) => {
     swapSourceTarget(source, target);
   }, [source]);
 
+  useEffect(() => {
+    const container = containerReference.current;
+    if(!props.activeColor || !container ) return;
+
+    container.style.setProperty('--color', props.activeColor)
+  }, [props.activeColor])
+
   return (
+    <div ref={ref}>
+
+    
     <div>
-      <div className={styles.container}>
+      <div ref={containerReference} className={styles.container}>
         <div className={styles.header}>
           <p className={styles.heading}>{info.basicInfo?.detail?.name}</p>
           <p className={styles.subHeading}>{info.basicInfo?.detail?.title}</p>
@@ -348,7 +361,8 @@ const Resume = (props, ref) => {
         </div>
       </div>
     </div>
+    </div>
   );
-};
+})
 
 export default Resume;

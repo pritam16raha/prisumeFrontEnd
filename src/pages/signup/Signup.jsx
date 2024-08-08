@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { Backend } from "../../assets/domain";
 // import { mobile } from "../responsive";
 
 const Signup = () => {
@@ -28,7 +29,7 @@ const handleSubmit = async (e) => {
 
     const { name, username, email, password } = userFormData
 
-    const sentResponse = await fetch(`http://localhost:5500/user/register`, {
+    const sentResponse = await fetch(`${Backend}/user/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

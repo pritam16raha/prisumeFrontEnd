@@ -308,7 +308,6 @@ const Container = styled.div`
   gap: 30px;
   padding: 30px;
   border-radius: 10px;
-  background-color: rgb(255, 255, 255);
   box-sizing: border-box;
 `;
 
@@ -319,19 +318,18 @@ const Header = styled.header`
 
 const Name = styled.h1`
   font-size: 36px;
-  color: #6a1b9a;
+  color: var(--color);
   margin-bottom: 5px;
 `;
 
 const ContactInfo = styled.p`
   font-size: 16px;
-  color: #333;
   margin: 0;
 `;
 
 const SectionTitle = styled.h2`
   font-size: 24px;
-  color: #6a1b9a;
+  color: var(--color);
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 10px;
   margin-bottom: 15px;
@@ -370,17 +368,17 @@ const AdditionalInfo = styled.section`
 
 const JobTitle = styled.h3`
   font-size: 20px;
-  color: #333;
+
 `;
 
 const JobDuration = styled.span`
   font-size: 14px;
-  color: #666;
+
 `;
 
 const JobDescription = styled.ul`
   font-size: 16px;
-  color: #333;
+
   list-style-type: disc;
   padding-left: 20px;
   margin: 5px 0 15px 0;

@@ -9,7 +9,7 @@ export default function Footer() {
       <span>Copyright &copy; 2024 Prisume. All rights reserved</span>
       <ul className="links">
         <li>
-          <a href="#hero">Home</a>
+          <a href="/">Home</a>
         </li>
         <li>
           <a href="#services">About</a>

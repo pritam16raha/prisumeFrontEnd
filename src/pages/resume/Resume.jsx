@@ -1,9 +1,9 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import { forwardRef, useEffect, useRef, useState } from "react";
 import styles from "./Resume.module.css";
 import {
   FaGithub,
   FaLinkedin,
-  FaGlobe,
   FaPaperclip,
   FaMapMarkerAlt,
   FaPhone,
@@ -12,7 +12,6 @@ import { SlCalender } from "react-icons/sl";
 import { CiMail } from "react-icons/ci";
 
 const Resume = forwardRef((props, ref) => {
-
   const information = props.information;
   const sections = props.sections;
   const [source, setSource] = useState();
@@ -304,16 +303,13 @@ const Resume = forwardRef((props, ref) => {
 
   useEffect(() => {
     const container = containerReference.current;
-    if(!props.activeColor || !container ) return;
+    if (!props.activeColor || !container) return;
 
-    container.style.setProperty('--color', props.activeColor)
-  }, [props.activeColor])
+    container.style.setProperty("--color", props.activeColor);
+  }, [props.activeColor]);
 
   return (
     <div ref={ref}>
-
-    
-    <div>
       <div ref={containerReference} className={styles.container}>
         <div className={styles.header}>
           <p className={styles.heading}>{info.basicInfo?.detail?.name}</p>
@@ -361,8 +357,9 @@ const Resume = forwardRef((props, ref) => {
         </div>
       </div>
     </div>
-    </div>
   );
-})
+});
+
+Resume.displayName = "Resume";
 
 export default Resume;

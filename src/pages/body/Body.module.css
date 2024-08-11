@@ -28,6 +28,14 @@
   margin-top: -15px;
 }
 
+.resumeTemplate{
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  margin: auto;
+  margin-top: -15px;
+}
+
 .colors .color {
   height: 36px;
   width: 36px;

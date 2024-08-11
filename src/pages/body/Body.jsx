@@ -5,9 +5,15 @@ import { ArrowDown } from "react-feather";
 import Resume from "../resume/Resume";
 import styled from "styled-components";
 import styles from "./Body.module.css";
+import ResumeTemplates2 from "../resume/ResumeTemplate2";
+import ResumeTemplates4 from "../resume/ResumeTemplates4";
+import ResumeTemplates3 from "../resume/ResumeTemplates3";
 
 const Body = () => {
   const colors = ["#239ce2", "#48bb78", "#0bc5ea", "#a0aec0", "#ed8936"];
+
+  const resumeTemplates = ["resume1", "resume2", "resume3", "resume4"];
+
   const sections = {
     basicInfo: "Basic Info",
     workExp: "Work Experience",
@@ -20,6 +26,11 @@ const Body = () => {
   const resumeRef = useRef();
 
   const [activeColor, setActiveColor] = useState(colors[0]);
+
+  const [activeTemplate, setActiveResumeTemplate] = useState(
+    resumeTemplates[0]
+  );
+
   const [resumeInformation, setResumeInformation] = useState({
     [sections.basicInfo]: {
       id: sections.basicInfo,
@@ -85,7 +96,38 @@ const Body = () => {
           ))}
         </div>
 
+        <div>
+          {resumeTemplates.map((item) => (
+            <span
+              style={{ backgroundColor: "black" }}
+              className={`${styles.resumeTemplate} ${
+                activeTemplate === item ? styles.active : ""
+              }`}
+              key={item}
+              onClick={() => setActiveResumeTemplate(item)}
+            />
+          ))}
+        </div>
+
         <Resume
+          ref={resumeRef}
+          sections={sections}
+          information={resumeInformation}
+          activeColor={activeColor}
+        />
+        <ResumeTemplates2
+          ref={resumeRef}
+          sections={sections}
+          information={resumeInformation}
+          activeColor={activeColor}
+        />
+        <ResumeTemplates3
+          ref={resumeRef}
+          sections={sections}
+          information={resumeInformation}
+          activeColor={activeColor}
+        />
+        <ResumeTemplates4
           ref={resumeRef}
           sections={sections}
           information={resumeInformation}
@@ -116,7 +158,7 @@ const Main = styled.div`
   /* gap: 30px; */
   /* width: 100%; */
 
-  h2{
+  h2 {
     margin: 0;
     /* margin-top: 0; */
   }

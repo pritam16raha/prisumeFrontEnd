@@ -29,7 +29,7 @@ export default function Navbar() {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/resume">Create Resume</a>
+            <Link to="/resume">Create Resume</Link>
           </li>
         </ul>
         <div className="nav-button">
@@ -53,7 +53,9 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-          <Link to='/resume'>Create Resume</Link>
+            <a href="/resume" onClick={() => setNavbarState(false)}>
+              Create Resume
+            </a>
           </li>
           <li>
             <a href="/signin" onClick={() => setNavbarState(false)}>

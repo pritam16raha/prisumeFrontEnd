@@ -111,21 +111,6 @@ const HeroSection = styled(Section)`
 	position: relative;
 	display: flex;
 
-	@media screen and (min-width: 768px) {
-		height: 592px;
-	}
-
-	@media screen and (min-width: 992px) {
-		height: 710px;
-	}
-
-	@media screen and (min-width: 1200px) {
-		height: 820px;
-	}
-
-	@media screen and (min-width: 2000px) {
-		height: 1200px;
-	}
 `;
 
 const HeroImage = styled.img`

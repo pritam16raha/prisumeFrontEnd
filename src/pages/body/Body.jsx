@@ -8,9 +8,19 @@ import styles from "./Body.module.css";
 import ResumeTemplates2 from "../resume/ResumeTemplate2";
 import ResumeTemplates4 from "../resume/ResumeTemplates4";
 import ResumeTemplates3 from "../resume/ResumeTemplates3";
+import ResumeTemplate5 from "../resume/ResumeTemplate5";
 
 const Body = () => {
-  const colors = ["#239ce2", "#48bb78", "#0bc5ea", "#a0aec0", "#ed8936" , "#000" , "#0b07d8" , "#500000"];
+  const colors = [
+    "#239ce2",
+    "#48bb78",
+    "#0bc5ea",
+    "#a0aec0",
+    "#ed8936",
+    "#000",
+    "#0b07d8",
+    "#500000",
+  ];
 
   const resumeTemplates = ["resume1", "resume2", "resume3", "resume4"];
 
@@ -128,6 +138,13 @@ const Body = () => {
           activeColor={activeColor}
         />
         <ResumeTemplates4
+          ref={resumeRef}
+          sections={sections}
+          information={resumeInformation}
+          activeColor={activeColor}
+        />
+
+        <ResumeTemplate5
           ref={resumeRef}
           sections={sections}
           information={resumeInformation}

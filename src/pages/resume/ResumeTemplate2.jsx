@@ -1,17 +1,17 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import styles from "./Resume.module.css";
-import { SlCalender } from "react-icons/sl";
+/* eslint-disable react/prop-types */
+import { forwardRef, useEffect, useRef, useState } from "react";
+import styles from "./ResumeTemplate2.module.css";
 import {
   FaGithub,
   FaLinkedin,
-  FaMapMarkerAlt,
   FaPaperclip,
+  FaMapMarkerAlt,
   FaPhone,
 } from "react-icons/fa";
+import { SlCalender } from "react-icons/sl";
 import { CiMail } from "react-icons/ci";
 
-const ResumeTemplates2 = forwardRef((props, ref) => {
+const Resume = forwardRef((props, ref) => {
   const information = props.information;
   const sections = props.sections;
   const [source, setSource] = useState();
@@ -36,6 +36,227 @@ const ResumeTemplates2 = forwardRef((props, ref) => {
     const date = new Date(value);
 
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  };
+
+  const sectionDiv = {
+    [sections.workExp]: (
+      <div
+        key={"workexp"}
+        className={`${styles.section} ${
+          info.workExp?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.workExp?.id)}
+        onDragEnd={() => setSource(info.workExp?.id)}
+      >
+        <div className={styles.sectionTitle}>{info.workExp.sectionTitle}</div>
+        <div className={styles.content}>
+          {info.workExp?.details?.map((item) => (
+            <div className={styles.item} key={item.title}>
+              {item.title ? (
+                <p className={styles.title}>{item.title}</p>
+              ) : (
+                <span />
+              )}
+              {item.companyName ? (
+                <p className={styles.subTitle}>{item.companyName}</p>
+              ) : (
+                <span />
+              )}
+              {item.certificationLink ? (
+                <a className={styles.link} href={item.certificationLink}>
+                  <FaPaperclip />
+                  {item.certificationLink}
+                </a>
+              ) : (
+                <span />
+              )}
+              {item.startDate && item.endDate ? (
+                <div className={styles.date}>
+                  <SlCalender /> {getFormattedDate(item.startDate)}-
+                  {getFormattedDate(item.endDate)}
+                </div>
+              ) : (
+                <div />
+              )}
+              {item.location ? (
+                <p className={styles.date}>
+                  <FaMapMarkerAlt /> Remote
+                </p>
+              ) : (
+                <span />
+              )}
+              {item.points?.length > 0 ? (
+                <ul className={styles.points}>
+                  {item.points?.map((elem, index) => (
+                    <li className={styles.point} key={elem + index}>
+                      {elem}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <span />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+    [sections.project]: (
+      <div
+        key={"project"}
+        className={`${styles.section} ${
+          info.project?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.project?.id)}
+        onDragEnd={() => setSource(info.project?.id)}
+      >
+        <div className={styles.sectionTitle}>{info.project.sectionTitle}</div>
+        <div className={`${styles.content} ${styles.projectBody}`}>
+          {info.project?.details?.map((item, index) => (
+            <div className={styles.item} key={index}>
+              {item.title ? (
+                <p className={styles.title}>{item.title}</p>
+              ) : (
+                <span />
+              )}
+              {item.link ? (
+                <a className={styles.link} href={item.link}>
+                  <FaPaperclip />
+                  {item.link}
+                </a>
+              ) : (
+                <span />
+              )}
+              {item.github ? (
+                <a className={styles.link} href={item.github}>
+                  <FaGithub />
+                  {item.github}
+                </a>
+              ) : (
+                <span />
+              )}
+              {item.overview ? (
+                <p className={styles.overview}>{item.overview} </p>
+              ) : (
+                <span />
+              )}
+              {item.points?.length > 0 ? (
+                <ul className={styles.points}>
+                  {item.points?.map((elem, index) => (
+                    <li className={styles.point} key={elem + index}>
+                      {elem}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <span />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+    [sections.education]: (
+      <div
+        key={"education"}
+        className={`${styles.section} ${
+          info.education?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.education?.id)}
+        onDragEnd={() => setSource(info.education?.id)}
+      >
+        <div className={styles.sectionTitle}>
+          {info.education?.sectionTitle}
+        </div>
+        <div className={`${styles.content} ${"educationBody"}`}>
+          {info.education?.details?.map((item, index) => (
+            <div className={styles.item} key={index}>
+              {item.title ? (
+                <p className={styles.title}>{item.title}</p>
+              ) : (
+                <span />
+              )}
+              {item.college ? (
+                <p className={styles.subTitle}>{item.college}</p>
+              ) : (
+                <span />
+              )}
+              {item.startDate && item.endDate ? (
+                <div className={styles.date}>
+                  <SlCalender /> {getFormattedDate(item.startDate)} -
+                  {getFormattedDate(item.endDate)}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+    [sections.achievement]: (
+      <div
+        key={"achievement"}
+        className={`${styles.section} ${
+          info.achievement?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.achievement?.id)}
+        onDragEnd={() => setSource(info.achievement?.id)}
+      >
+        <div className={styles.sectionTitle}>
+          {info.achievement?.sectionTitle}
+        </div>
+        <div className={styles.content}>
+          {info.achievement?.points?.length > 0 ? (
+            <ul className={styles.numbered}>
+              {info.achievement?.points?.map((elem, index) => (
+                <li className={styles.point} key={elem + index}>
+                  {elem}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <span />
+          )}
+        </div>
+      </div>
+    ),
+    [sections.summary]: (
+      <div
+        key={"summary"}
+        className={`${styles.section} ${
+          info.summary?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.summary?.id)}
+        onDragEnd={() => setSource(info.summary?.id)}
+      >
+        <div className={styles.sectionTitle}>{info.summary?.sectionTitle}</div>
+        <div className={styles.content}>
+          <p className={styles.overview}>{info.summary?.detail}</p>
+        </div>
+      </div>
+    ),
+    [sections.other]: (
+      <div
+        key={"other"}
+        className={`${styles.section} ${
+          info.other?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.other?.id)}
+        onDragEnd={() => setSource(info.other?.id)}
+      >
+        <div className={styles.sectionTitle}>{info.other?.sectionTitle}</div>
+        <div className={styles.content}>
+          <p className={styles.overview}>{info?.other?.detail}</p>
+        </div>
+      </div>
+    ),
   };
 
   useEffect(() => {
@@ -73,7 +294,7 @@ const ResumeTemplates2 = forwardRef((props, ref) => {
     setColumns(tempColumns);
   };
 
-  //   console.log(`Source - ${source} , Target - ${target}`)
+  console.log(`Source - ${source} , Target - ${target}`)
 
   useEffect(() => {
     if (!source || !target) return;
@@ -89,11 +310,12 @@ const ResumeTemplates2 = forwardRef((props, ref) => {
 
   return (
     <div ref={ref}>
-      <Container ref={containerReference}>
-        <Header>
-          <Name>{info.basicInfo?.detail?.name}</Name>
-          <ContactInfo>
-            <ContactInfo>{info.basicInfo?.detail?.title}</ContactInfo>
+      <div ref={containerReference} className={styles.container}>
+        <div className={styles.header}>
+          <p className={styles.heading}>{info.basicInfo?.detail?.name}</p>
+          <p className={styles.subHeading}>{info.basicInfo?.detail?.title}</p>
+
+          <div className={styles.links}>
             {info.basicInfo?.detail?.email ? (
               <a className={styles.link} type="email">
                 <CiMail /> {info.basicInfo?.detail?.email}
@@ -122,268 +344,22 @@ const ResumeTemplates2 = forwardRef((props, ref) => {
             ) : (
               <span />
             )}
-          </ContactInfo>
-        </Header>
-
-        <Summary
-          className={`${styles.section} ${
-            info.summary?.sectionTitle ? "" : styles.hidden
-          }`}
-        >
-          <SectionTitle>{info.summary?.sectionTitle}</SectionTitle>
-          <p>{info.summary?.detail}</p>
-        </Summary>
-
-        <WorkExperience>
-          <SectionTitle
-            className={`${styles.section} ${
-              info.workExp?.sectionTitle ? "" : styles.hidden
-            }`}
-          >
-            {info.workExp.sectionTitle}
-          </SectionTitle>
-
-          <div className="WorkExp">
-            {info.workExp?.details?.map((item) => (
-              <div className={styles.item} key={item.title}>
-                <JobTitle>{item.title}</JobTitle>
-
-                {item.companyName ? (
-                  <p className={styles.subTitle}>{item.companyName}</p>
-                ) : (
-                  <span />
-                )}
-                {item.certificationLink ? (
-                  <a className={styles.link} href={item.certificationLink}>
-                    <FaPaperclip />
-                    {item.certificationLink}
-                  </a>
-                ) : (
-                  <span />
-                )}
-                <JobDuration>
-                  {item.startDate && item.endDate ? (
-                    <div className={styles.date}>
-                      <SlCalender /> {getFormattedDate(item.startDate)}-
-                      {getFormattedDate(item.endDate)}
-                    </div>
-                  ) : (
-                    <div />
-                  )}
-                </JobDuration>
-                {item.location ? (
-                  <p className={styles.date}>
-                    <FaMapMarkerAlt /> Remote
-                  </p>
-                ) : (
-                  <span />
-                )}
-                {item.points?.length > 0 ? (
-                  <JobDescription className={styles.points}>
-                    {item.points?.map((elem, index) => (
-                      <ListItem className={styles.point} key={elem + index}>
-                        {elem}
-                      </ListItem>
-                    ))}
-                  </JobDescription>
-                ) : (
-                  <span />
-                )}
-              </div>
-            ))}
           </div>
-        </WorkExperience>
+        </div>
 
-        <Education
-          className={`${styles.section} ${
-            info.education?.sectionTitle ? "" : styles.hidden
-          }`}
-        >
-          <SectionTitle>{info.education?.sectionTitle}</SectionTitle>
-
-          <div className="Education">
-            {info.education?.details?.map((item, index) => (
-              <div className={styles.item} key={index}>
-                {item.title ? (
-                  <JobTitle className={styles.title}>{item.title}</JobTitle>
-                ) : (
-                  <span />
-                )}
-                {item.college ? (
-                  <p className={styles.subTitle}>{item.college}</p>
-                ) : (
-                  <span />
-                )}
-                {item.startDate && item.endDate ? (
-                  <JobDuration className={styles.date}>
-                    <SlCalender /> {getFormattedDate(item.startDate)} -
-                    {getFormattedDate(item.endDate)}
-                  </JobDuration>
-                ) : (
-                  ""
-                )}
-              </div>
-            ))}
+        <div className={styles.main}>
+          <div className={styles.col1}>
+            {columns[0].map((item) => sectionDiv[item])}
           </div>
-        </Education>
-
-        <AdditionalInfo
-          className={`${styles.section} ${
-            info.achievement?.sectionTitle ? "" : styles.hidden
-          }`}
-        >
-          <SectionTitle>{info.achievement?.sectionTitle}</SectionTitle>
-
-          <div className={styles.content}>
-            {info.achievement?.points?.length > 0 ? (
-              <ul className={styles.item}>
-                {info.achievement?.points?.map((elem, index) => (
-                  <li className={styles.point} key={elem + index}>
-                    {elem}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <span />
-            )}
+          <div className={styles.col2}>
+            {columns[1].map((item) => sectionDiv[item])}
           </div>
-        </AdditionalInfo>
-
-        <AdditionalInfo>
-          <div
-            key={"summary"}
-            className={`${styles.section} ${
-              info.summary?.sectionTitle ? "" : styles.hidden
-            }`}
-            draggable
-            onDragOver={() => setTarget(info.summary?.id)}
-            onDragEnd={() => setSource(info.summary?.id)}
-          >
-            <SectionTitle>
-              {info.summary?.sectionTitle}
-            </SectionTitle>
-            <div className={styles.content}>
-              <p className={styles.overview}>{info.summary?.detail}</p>
-            </div>
-          </div>
-        </AdditionalInfo>
-
-        <AdditionalInfo>
-          <div
-            key={"other"}
-            className={`${styles.section} ${
-              info.other?.sectionTitle ? "" : styles.hidden
-            }`}
-            draggable
-            onDragOver={() => setTarget(info.other?.id)}
-            onDragEnd={() => setSource(info.other?.id)}
-          >
-            <SectionTitle>
-              {info.other?.sectionTitle}
-            </SectionTitle>
-            <div className={styles.content}>
-              <p className={styles.overview}>{info?.other?.detail}</p>
-            </div>
-          </div>
-        </AdditionalInfo>
-      </Container>
+        </div>
+      </div>
     </div>
   );
 });
 
-ResumeTemplates2.displayName = "ResumeTemplates2";
+Resume.displayName = "Resume";
 
-export default ResumeTemplates2;
-
-const Container = styled.div`
-  min-width: 700px;
-  max-width: 900px;
-  margin: 0 auto;
-  flex: 1.2;
-  height: fit-content;
-  min-height: 900px;
-  box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 30px;
-  border-radius: 10px;
-  box-sizing: border-box;
-`;
-
-const Header = styled.header`
-  text-align: center;
-  margin-bottom: 20px;
-`;
-
-const Name = styled.h1`
-  font-size: 36px;
-  color: var(--color);
-  margin-bottom: 5px;
-`;
-
-const ContactInfo = styled.p`
-  font-size: 16px;
-  margin: 0;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 24px;
-  color: var(--color);
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-`;
-
-const Summary = styled.section`
-  margin-bottom: 20px;
-`;
-
-const WorkExperience = styled.section`
-  margin-bottom: 20px;
-  .WorkExp {
-    display: flex;
-    justify-content: space-between;
-  }
-`;
-
-const Education = styled.section`
-  margin-bottom: 20px;
-  .Education {
-    display: flex;
-    justify-content: space-between;
-  }
-`;
-
-const AdditionalInfo = styled.section`
-  margin-bottom: 20px;
-  ul {
-    letter-spacing: 1px;
-  }
-  li {
-    margin: 1px;
-    margin-left: -15px;
-  }
-`;
-
-const JobTitle = styled.h3`
-  font-size: 20px;
-
-`;
-
-const JobDuration = styled.span`
-  font-size: 14px;
-
-`;
-
-const JobDescription = styled.ul`
-  font-size: 16px;
-
-  list-style-type: disc;
-  padding-left: 20px;
-  margin: 5px 0 15px 0;
-`;
-
-const ListItem = styled.li`
-  margin-bottom: 5px;
-`;
+export default Resume;

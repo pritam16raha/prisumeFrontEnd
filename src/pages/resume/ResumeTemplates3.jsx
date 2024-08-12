@@ -1,10 +1,17 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-
-
+import { forwardRef, useEffect, useRef, useState } from "react";
+import styles from "./ResumeTemplate3.module.css";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaPaperclip,
+  FaMapMarkerAlt,
+  FaPhone,
+} from "react-icons/fa";
+import { SlCalender } from "react-icons/sl";
+import { CiMail } from "react-icons/ci";
+import styled from "styled-components";
 
 const ResumeTemplates3 = forwardRef((props, ref) => {
-
   const information = props.information;
   const sections = props.sections;
   const [source, setSource] = useState();
@@ -29,6 +36,241 @@ const ResumeTemplates3 = forwardRef((props, ref) => {
     const date = new Date(value);
 
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  };
+
+  const sectionDiv = {
+    [sections.workExp]: (
+      <Section
+        key={"workexp"}
+        className={`${
+          info.workExp?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.workExp?.id)}
+        onDragEnd={() => setSource(info.workExp?.id)}
+      >
+        <SectionTitle >
+          {info.workExp.sectionTitle}
+        </SectionTitle>
+        <SectionContent >
+          {info.workExp?.details?.map((item) => (
+            <div className={styles.item} key={item.title}>
+              {item.title ? (
+                <p className={styles.title}>{item.title}</p>
+              ) : (
+                <span />
+              )}
+              {item.companyName ? (
+                <ItemTitle >
+                  {item.companyName}
+                </ItemTitle>
+              ) : (
+                <span />
+              )}
+              {item.certificationLink ? (
+                <a className={styles.link} href={item.certificationLink}>
+                  <FaPaperclip />
+                  {item.certificationLink}
+                </a>
+              ) : (
+                <span />
+              )}
+              {item.startDate && item.endDate ? (
+                <ItemDuration >
+                  <SlCalender /> {getFormattedDate(item.startDate)}-
+                  {getFormattedDate(item.endDate)}
+                </ItemDuration>
+              ) : (
+                <div />
+              )}
+              {item.location ? (
+                <p className={styles.date}>
+                  <FaMapMarkerAlt /> Remote
+                </p>
+              ) : (
+                <span />
+              )}
+              {item.points?.length > 0 ? (
+                <ul className={styles.points}>
+                  {item.points?.map((elem, index) => (
+                    <li className={styles.point} key={elem + index}>
+                      {elem}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <span />
+              )}
+            </div>
+          ))}
+        </SectionContent>
+      </Section>
+    ),
+    [sections.project]: (
+      <Section
+        key={"project"}
+        className={`${styles.section} ${
+          info.project?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.project?.id)}
+        onDragEnd={() => setSource(info.project?.id)}
+      >
+        <SectionTitle className={styles.sectionTitle}>
+          {info.project.sectionTitle}
+        </SectionTitle>
+        <SectionContent >
+          {info.project?.details?.map((item, index) => (
+            <item className={styles.item} key={index}>
+              {item.title ? (
+                <ItemTitle className={styles.title}>{item.title}</ItemTitle>
+              ) : (
+                <span />
+              )}
+              {item.link ? (
+                <a className={styles.link} href={item.link}>
+                  <FaPaperclip />
+                  {item.link}
+                </a>
+              ) : (
+                <span />
+              )}
+              {item.github ? (
+                <a className={styles.link} href={item.github}>
+                  <FaGithub />
+                  {item.github}
+                </a>
+              ) : (
+                <span />
+              )}
+              {item.overview ? (
+                <ItemDescription className={styles.overview}>
+                  {item.overview}{" "}
+                </ItemDescription>
+              ) : (
+                <span />
+              )}
+              {item.points?.length > 0 ? (
+                <ul className={styles.points}>
+                  {item.points?.map((elem, index) => (
+                    <li className={styles.point} key={elem + index}>
+                      {elem}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <span />
+              )}
+            </item>
+          ))}
+        </SectionContent>
+      </Section>
+    ),
+    [sections.education]: (
+      <Section
+        key={"education"}
+        className={`${styles.section} ${
+          info.education?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.education?.id)}
+        onDragEnd={() => setSource(info.education?.id)}
+      >
+        <SectionTitle className={styles.sectionTitle}>
+          {info.education?.sectionTitle}
+        </SectionTitle>
+        <SectionContent >
+          {info.education?.details?.map((item, index) => (
+            <div className={styles.item} key={index}>
+              {item.title ? (
+                <ItemTitle className={styles.title}>{item.title}</ItemTitle>
+              ) : (
+                <span />
+              )}
+              {item.college ? (
+                <p className={styles.subTitle}>{item.college}</p>
+              ) : (
+                <span />
+              )}
+              {item.startDate && item.endDate ? (
+                <ItemDuration className={styles.date}>
+                  <SlCalender /> {getFormattedDate(item.startDate)} -
+                  {getFormattedDate(item.endDate)}
+                </ItemDuration>
+              ) : (
+                ""
+              )}
+            </div>
+          ))}
+        </SectionContent>
+      </Section>
+    ),
+    [sections.achievement]: (
+      <Section
+        key={"achievement"}
+        className={`${styles.section} ${
+          info.achievement?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.achievement?.id)}
+        onDragEnd={() => setSource(info.achievement?.id)}
+      >
+        <SectionTitle className={styles.sectionTitle}>
+          {info.achievement?.sectionTitle}
+        </SectionTitle>
+        <SectionContent >
+          {info.achievement?.points?.length > 0 ? (
+            <ul className={styles.numbered}>
+              {info.achievement?.points?.map((elem, index) => (
+                <li className={styles.point} key={elem + index}>
+                  {elem}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <span />
+          )}
+        </SectionContent>
+      </Section>
+    ),
+    [sections.summary]: (
+      <Section
+        key={"summary"}
+        className={`${styles.section} ${
+          info.summary?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.summary?.id)}
+        onDragEnd={() => setSource(info.summary?.id)}
+      >
+        <SectionTitle className={styles.sectionTitle}>
+          {info.summary?.sectionTitle}
+        </SectionTitle>
+        <SectionContent className={styles.content}>
+          <p className={styles.overview}>{info.summary?.detail}</p>
+        </SectionContent>
+      </Section>
+    ),
+    [sections.other]: (
+      <Section
+        key={"other"}
+        className={`${styles.section} ${
+          info.other?.sectionTitle ? "" : styles.hidden
+        }`}
+        draggable
+        onDragOver={() => setTarget(info.other?.id)}
+        onDragEnd={() => setSource(info.other?.id)}
+      >
+        <SectionTitle className={styles.sectionTitle}>
+          {info.other?.sectionTitle}
+        </SectionTitle>
+        <SectionContent className={styles.content}>
+          <ItemDescription className={styles.overview}>
+            {info?.other?.detail}
+          </ItemDescription>
+        </SectionContent>
+      </Section>
+    ),
   };
 
   useEffect(() => {
@@ -66,7 +308,7 @@ const ResumeTemplates3 = forwardRef((props, ref) => {
     setColumns(tempColumns);
   };
 
-  //   console.log(`Source - ${source} , Target - ${target}`)
+  console.log(`Source - ${source} , Target - ${target}`);
 
   useEffect(() => {
     if (!source || !target) return;
@@ -84,121 +326,59 @@ const ResumeTemplates3 = forwardRef((props, ref) => {
     <Container>
       <Header>
         <NameSection>
-          <Name>MORGAN MAXWELL</Name>
-          <Title>MARKETING MANAGER</Title>
+          <Name>{info.basicInfo?.detail?.name}</Name>
+          <Title>{info.basicInfo?.detail?.title}</Title>
         </NameSection>
         <ContactInfo>
-          <ContactItem>
-            <Icon>📞</Icon>+123-456-7890
-          </ContactItem>
-          <ContactItem>
-            <Icon>📧</Icon>hello@reallygreatsite.com
-          </ContactItem>
-          <ContactItem>
-            <Icon>📍</Icon>123 Anywhere St., Any City
-          </ContactItem>
+          {info.basicInfo?.detail?.email ? (
+            <ContactItem type="email">
+              <CiMail /> {info.basicInfo?.detail?.email}
+            </ContactItem>
+          ) : (
+            <span />
+          )}
+
+          {info.basicInfo?.detail?.phone ? (
+            <ContactItem>
+              <FaPhone /> {info.basicInfo?.detail?.phone}
+            </ContactItem>
+          ) : (
+            <span />
+          )}
+
+          {info.basicInfo?.detail?.linkedin ? (
+            <ContactItem>
+              <FaLinkedin /> {info.basicInfo?.detail?.linkedin}
+            </ContactItem>
+          ) : (
+            <span />
+          )}
+
+          {info.basicInfo?.detail?.github ? (
+            <ContactItem>
+              <FaGithub /> {info.basicInfo?.detail?.github}
+            </ContactItem>
+          ) : (
+            <span />
+          )}
         </ContactInfo>
       </Header>
 
       <Section>
-        <SectionTitle>About Me</SectionTitle>
-        <p>
-          Lorem ipsum dolor sit amet, bonorum pertinax patrioque et pri, ea pri audire molestiae ponderum, ei eripuit habemus delicatissimi eum.
-        </p>
-      </Section>
-
-      <Section>
-        <SectionTitle>Experience</SectionTitle>
         <SectionContent>
-          <LeftColumn>
-            <ItemTitle>Company Name</ItemTitle>
-            <ItemDuration>2017 - 2020</ItemDuration>
-            <ItemDescription>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </ItemDescription>
-
-            <ItemTitle>Company Name</ItemTitle>
-            <ItemDuration>2020 - 2021</ItemDuration>
-            <ItemDescription>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </ItemDescription>
-          </LeftColumn>
-        </SectionContent>
-      </Section>
-
-      <Section>
-        <SectionTitle>Education</SectionTitle>
-        <SectionContent>
-          <LeftColumn>
-            <ItemTitle>University Name</ItemTitle>
-            <ItemDuration>2015</ItemDuration>
-            <ItemDescription>Your Degree</ItemDescription>
-
-            <ItemTitle>University Name</ItemTitle>
-            <ItemDuration>2015</ItemDuration>
-            <ItemDescription>Your Degree</ItemDescription>
-
-            <ItemTitle>University Name</ItemTitle>
-            <ItemDuration>2015</ItemDuration>
-            <ItemDescription>Your Degree</ItemDescription>
-          </LeftColumn>
-        </SectionContent>
-      </Section>
-
-      <Section>
-        <SectionContent>
-          <LeftColumn>
-            <SectionTitle>Language</SectionTitle>
-            <LanguageList>
-              <LanguageItem>
-                <LanguageName>Spanish</LanguageName>
-                <LanguageBar>
-                  <LanguageFill level="90%" />
-                </LanguageBar>
-              </LanguageItem>
-              <LanguageItem>
-                <LanguageName>English</LanguageName>
-                <LanguageBar>
-                  <LanguageFill level="80%" />
-                </LanguageBar>
-              </LanguageItem>
-              <LanguageItem>
-                <LanguageName>Japanese</LanguageName>
-                <LanguageBar>
-                  <LanguageFill level="70%" />
-                </LanguageBar>
-              </LanguageItem>
-              <LanguageItem>
-                <LanguageName>Korean</LanguageName>
-                <LanguageBar>
-                  <LanguageFill level="60%" />
-                </LanguageBar>
-              </LanguageItem>
-            </LanguageList>
-          </LeftColumn>
-
-          <RightColumn>
-            <SectionTitle>Expertise</SectionTitle>
-            <List>
-              <ListItem>UI/UX</ListItem>
-              <ListItem>Visual Design</ListItem>
-              <ListItem>Leadership</ListItem>
-              <ListItem>Coaching</ListItem>
-            </List>
-
-            <SectionTitle>Reference</SectionTitle>
-            <p>
-              Lorna Alvarado<br />
-              Company Name/Position<br />
-              Phone: +123-456-7890
-            </p>
-          </RightColumn>
+          <div className={styles.main}>
+            <div className={styles.col1}>
+              {columns[0].map((item) => sectionDiv[item])}
+            </div>
+            <div className={styles.col2}>
+              {columns[1].map((item) => sectionDiv[item])}
+            </div>
+          </div>
         </SectionContent>
       </Section>
     </Container>
   );
-}
-);
+});
 
 ResumeTemplates3.displayName = "ResumeTemplates3";
 
@@ -219,6 +399,7 @@ const Container = styled.div`
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
   box-sizing: border-box;
+  margin: 20px;
 `;
 
 const Header = styled.header`
@@ -271,6 +452,7 @@ const SectionTitle = styled.h2`
 const SectionContent = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 0 20px;
 `;
 
 const LeftColumn = styled.div`
@@ -337,5 +519,5 @@ const LanguageBar = styled.div`
 const LanguageFill = styled.div`
   height: 100%;
   background-color: #333;
-  width: ${props => props.level || '0%'};
+  width: ${(props) => props.level || "0%"};
 `;

@@ -1,0 +1,162 @@
+.container {
+    --color: #239ce2;
+    min-width: 700px;
+    max-width: 900px;
+    margin: 0 auto;
+    flex: 1.2;
+    height: fit-content;
+    min-height: 900px;
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.1);
+    gap: 30px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+  
+    a {
+      text-decoration: none;
+    }
+  }
+  
+  .header {
+    flex-direction: column;
+  }
+  
+  .header .heading {
+    font-size: 2.7rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 10px 0;
+  }
+  
+  .header .subHeading {
+    color: var(--color);
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin: 5px 0;
+  }
+  
+  .header .links {
+    margin-top: 15px;
+    gap: 30px;
+    row-gap: 10px;
+  }
+  
+  .header .link {
+    font-size: 0.875rem;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .header .link svg {
+    color: var(--color);
+    height: 16px;
+    width: 16px;
+  }
+  
+  .main {
+    gap: 30px;
+  }
+  
+  .col1 {
+
+    max-width: 800px;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .col2 {
+
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .section .sectionTitle {
+    font-size: 1.4rem;
+    font-weight: bold;
+    width: 100%;
+    border-bottom: 1px solid #8a8a8a;
+    margin: auto;
+  }
+  
+  .section .content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  .section .content .item {
+    border-bottom: 1px dotted lightgray;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 10px;
+  }
+  .section .content .item:last-child {
+    border-bottom: none;
+  }
+  
+  .content .title {
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 0.5rem;
+  }
+  
+  .content .subTitle {
+    font-weight: bold;
+    color: var(--color);
+    font-size: 1rem;
+    font-weight: 900;
+  }
+  
+  p {
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+  
+  .content .overview {
+    font-size: 0.875rem;
+  }
+  
+  .content .link {
+    display: flex;
+    gap: 5px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    color: var(--color);
+  }
+  .content .link svg {
+    height: 14px;
+    width: 14px;
+    color: var(--color);
+  }
+  
+  .content .date {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+  
+  .content .date svg {
+    height: 14px;
+    width: 14px;
+  }
+  
+  .content .points,
+  .numbered {
+    padding-left: 18px;
+    font-size: 0.875rem;
+  }
+  
+  .numbered li {
+    list-style-type: decimal;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  

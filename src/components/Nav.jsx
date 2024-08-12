@@ -53,9 +53,7 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            <a href="/resume" onClick={() => setNavbarState(false)}>
-              Create Resume
-            </a>
+          <Link to='/resume'>Create Resume</Link>
           </li>
           <li>
             <a href="/signin" onClick={() => setNavbarState(false)}>

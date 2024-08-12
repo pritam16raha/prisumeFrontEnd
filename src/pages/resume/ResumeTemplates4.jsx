@@ -2,20 +2,20 @@ import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  min-width: 700px;
-  max-width: 900px;
-  margin: 0 auto;
-  flex: 1.2;
-  height: fit-content;
-  min-height: 900px;
-  box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 30px;
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  box-sizing: border-box;
+min-width: 700px;
+    max-width: 900px;
+    margin: 0 auto;
+    flex: 1.2;
+    height: fit-content;
+    min-height: 900px;
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.1);
+    gap: 30px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    margin: auto;
 `;
 
 const Header = styled.header`

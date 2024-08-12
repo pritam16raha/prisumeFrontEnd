@@ -42,17 +42,13 @@ const ResumeTemplates3 = forwardRef((props, ref) => {
     [sections.workExp]: (
       <Section
         key={"workexp"}
-        className={`${
-          info.workExp?.sectionTitle ? "" : styles.hidden
-        }`}
+        className={`${info.workExp?.sectionTitle ? "" : styles.hidden}`}
         draggable
         onDragOver={() => setTarget(info.workExp?.id)}
         onDragEnd={() => setSource(info.workExp?.id)}
       >
-        <SectionTitle >
-          {info.workExp.sectionTitle}
-        </SectionTitle>
-        <SectionContent >
+        <SectionTitle>{info.workExp.sectionTitle}</SectionTitle>
+        <SectionContent>
           {info.workExp?.details?.map((item) => (
             <div className={styles.item} key={item.title}>
               {item.title ? (
@@ -61,9 +57,7 @@ const ResumeTemplates3 = forwardRef((props, ref) => {
                 <span />
               )}
               {item.companyName ? (
-                <ItemTitle >
-                  {item.companyName}
-                </ItemTitle>
+                <ItemTitle>{item.companyName}</ItemTitle>
               ) : (
                 <span />
               )}
@@ -76,7 +70,7 @@ const ResumeTemplates3 = forwardRef((props, ref) => {
                 <span />
               )}
               {item.startDate && item.endDate ? (
-                <ItemDuration >
+                <ItemDuration>
                   <SlCalender /> {getFormattedDate(item.startDate)}-
                   {getFormattedDate(item.endDate)}
                 </ItemDuration>
@@ -119,7 +113,7 @@ const ResumeTemplates3 = forwardRef((props, ref) => {
         <SectionTitle className={styles.sectionTitle}>
           {info.project.sectionTitle}
         </SectionTitle>
-        <SectionContent >
+        <SectionContent>
           {info.project?.details?.map((item, index) => (
             <item className={styles.item} key={index}>
               {item.title ? (
@@ -179,7 +173,7 @@ const ResumeTemplates3 = forwardRef((props, ref) => {
         <SectionTitle className={styles.sectionTitle}>
           {info.education?.sectionTitle}
         </SectionTitle>
-        <SectionContent >
+        <SectionContent>
           {info.education?.details?.map((item, index) => (
             <div className={styles.item} key={index}>
               {item.title ? (
@@ -218,7 +212,7 @@ const ResumeTemplates3 = forwardRef((props, ref) => {
         <SectionTitle className={styles.sectionTitle}>
           {info.achievement?.sectionTitle}
         </SectionTitle>
-        <SectionContent >
+        <SectionContent>
           {info.achievement?.points?.length > 0 ? (
             <ul className={styles.numbered}>
               {info.achievement?.points?.map((elem, index) => (
@@ -385,21 +379,20 @@ ResumeTemplates3.displayName = "ResumeTemplates3";
 export default ResumeTemplates3;
 
 const Container = styled.div`
-  min-width: 700px;
+  min-width: 900px;
   max-width: 900px;
   margin: 0 auto;
   flex: 1.2;
   height: fit-content;
   min-height: 900px;
   box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
   gap: 30px;
   padding: 30px;
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
   box-sizing: border-box;
-  margin: 20px;
+  font-family: Arial, sans-serif;
+  margin: auto;
 `;
 
 const Header = styled.header`

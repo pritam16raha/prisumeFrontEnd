@@ -1,0 +1,127 @@
+.container {
+  --color: #005580;
+  width: 800px;
+  height: auto;
+  padding: 20px 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.heading {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color);
+  margin-bottom: 5px;
+}
+
+.subHeading {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--color);
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.main {
+  display: flex;
+  gap: 20px;
+}
+
+.col1 {
+  width: 60%;
+  height: auto;
+}
+
+.section {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--color);
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color);
+  margin-bottom: 10px;
+}
+
+.content {
+  height: auto;
+  padding: 0 10px;
+}
+
+.item {
+  width: 100%;
+  height: auto;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color);
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.subTitle {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.date {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.overview {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.points {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.point {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.numbered {
+  list-style: decimal;
+  padding-left: 20px;
+}
+
+.hidden {
+  display: none;
+}

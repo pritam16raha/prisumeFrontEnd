@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { forwardRef, useEffect, useRef, useState } from "react";
-import styles from "./ResumeTemplate2.module.css";
+import styles from "./ResumeTemplates2.module.css";
 import {
   FaGithub,
   FaLinkedin,
@@ -11,7 +11,7 @@ import {
 import { SlCalender } from "react-icons/sl";
 import { CiMail } from "react-icons/ci";
 
-const Resume = forwardRef((props, ref) => {
+const ResumeTemplates2 = forwardRef((props, ref) => {
   const information = props.information;
   const sections = props.sections;
   const [source, setSource] = useState();
@@ -360,6 +360,6 @@ const Resume = forwardRef((props, ref) => {
   );
 });
 
-Resume.displayName = "Resume";
+ResumeTemplates2.displayName = "ResumeTemplates2";
 
-export default Resume;
+export default ResumeTemplates2;

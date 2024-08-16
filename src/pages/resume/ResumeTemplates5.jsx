@@ -1,6 +1,6 @@
   /* eslint-disable react/prop-types */
   import { forwardRef, useEffect, useRef, useState } from "react";
-  import styles from "./ResumeTemplates4.module.css";
+  import styles from "./ResumeTemplates5.module.css";
   import {
     FaGithub,
     FaLinkedin,
@@ -11,7 +11,7 @@
   import { SlCalender } from "react-icons/sl";
   import { CiMail } from "react-icons/ci";
   
-  const ResumeTemplates4 = forwardRef((props, ref) => {
+  const ResumeTemplates5 = forwardRef((props, ref) => {
     const information = props.information;
     const sections = props.sections;
     const [source, setSource] = useState();
@@ -348,7 +348,7 @@
       </div>
     );
   });
-    
-  ResumeTemplates4.displayName = "ResumeTemplates4";
   
-  export default ResumeTemplates4;
+  ResumeTemplates5.displayName = "ResumeTemplates5";
+  
+  export default ResumeTemplates5;

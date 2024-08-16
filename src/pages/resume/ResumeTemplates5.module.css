@@ -1,0 +1,160 @@
+
+/* Container for the entire resume */
+.container {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Header section styling */
+  .header {
+    text-align: left;
+    margin-bottom: 50px;
+  }
+  
+  .header .heading {
+    font-size: 36px;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 5px;
+  }
+  
+  .header .subHeading {
+    font-size: 20px;
+    color: #6c757d;
+    margin-bottom: 20px;
+  }
+  
+  .header .links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .header .link {
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+  }
+  
+  .header .link:hover {
+    color: #0073b1;
+  }
+  
+  .header .link svg {
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
+  /* Main content layout */
+  .main {
+    display: flex;
+    gap: 30px;
+  }
+  
+  /* Left column (primary content) */
+  .col1 {
+    flex: 3;
+  }
+  
+  /* Right column (secondary content) */
+  .col2 {
+    flex: 1;
+  }
+  
+  /* Section titles */
+  .section .sectionTitle {
+    font-size: 22px;
+    color: #343a40;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #0073b1;
+    padding-bottom: 5px;
+  }
+  
+  /* Content area styling */
+  .section .content {
+    margin-bottom: 25px;
+  }
+  
+  .section .content .item {
+    margin-bottom: 15px;
+  }
+  
+  .section .content .item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .content .title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 5px;
+  }
+  
+  .content .subTitle {
+    font-size: 16px;
+    color: #495057;
+    margin-bottom: 8px;
+  }
+  
+  p {
+    line-height: 1.5;
+    color: #343a40;
+    margin-bottom: 15px;
+  }
+  
+  .content .overview {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .content .date {
+    font-size: 14px;
+    color: #868e96;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 2px 6px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+  
+  .content .date svg {
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  
+  .content .points {
+    padding-left: 15px;
+  }
+  
+  .points li {
+    margin-bottom: 8px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .main {
+      flex-direction: column;
+    }
+  
+    .col1, .col2 {
+      flex: 1;
+    }
+  
+    .container {
+      padding: 15px;
+    }
+  }
+  
+  

@@ -5,10 +5,10 @@ import { ArrowDown } from "react-feather";
 import Resume from "../resume/Resume";
 import styled from "styled-components";
 import styles from "./Body.module.css";
-import ResumeTemplates2 from "../resume/ResumeTemplate2";
+import ResumeTemplates2 from "../resume/ResumeTemplates2";
 import ResumeTemplates4 from "../resume/ResumeTemplates4";
 import ResumeTemplates3 from "../resume/ResumeTemplates3";
-import ResumeTemplate5 from "../resume/ResumeTemplate5";
+import ResumeTemplate5 from "../resume/ResumeTemplates5";
 
 const Body = () => {
   const colors = [

@@ -294,7 +294,7 @@ const Resume = forwardRef((props, ref) => {
     setColumns(tempColumns);
   };
 
-  console.log(`Source - ${source} , Target - ${target}`)
+  // console.log(`Source - ${source} , Target - ${target}`)
 
   useEffect(() => {
     if (!source || !target) return;
@@ -363,3 +363,5 @@ const Resume = forwardRef((props, ref) => {
 Resume.displayName = "Resume";
 
 export default Resume;
+
+

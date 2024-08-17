@@ -8,7 +8,7 @@ import styles from "./Body.module.css";
 import ResumeTemplates2 from "../resume/ResumeTemplates2";
 import ResumeTemplates4 from "../resume/ResumeTemplates4";
 import ResumeTemplates3 from "../resume/ResumeTemplates3";
-import ResumeTemplate5 from "../resume/ResumeTemplates5";
+import ResumeTemplates5 from "../resume/ResumeTemplates5";
 
 const Body = () => {
   const colors = [
@@ -21,8 +21,6 @@ const Body = () => {
     "#0b07d8",
     "#500000",
   ];
-
-  const resumeTemplates = ["resume1", "resume2", "resume3", "resume4"];
 
   const sections = {
     basicInfo: "Basic Info",
@@ -37,9 +35,7 @@ const Body = () => {
 
   const [activeColor, setActiveColor] = useState(colors[0]);
 
-  const [activeTemplate, setActiveResumeTemplate] = useState(
-    resumeTemplates[0]
-  );
+  const [currentTemplates, setCurrentTemplates] = useState("firstResume");
 
   const [resumeInformation, setResumeInformation] = useState({
     [sections.basicInfo]: {
@@ -106,52 +102,60 @@ const Body = () => {
           ))}
         </div>
 
-        <div>
-          {resumeTemplates.map((item) => (
-            <span
-              style={{ backgroundColor: "black" }}
-              className={`${styles.resumeTemplate} ${
-                activeTemplate === item ? styles.active : ""
-              }`}
-              key={item}
-              onClick={() => setActiveResumeTemplate(item)}
-            />
-          ))}
+        <div className="templateButton">
+          <button onClick={() => setCurrentTemplates("firstResume")}>Template 1</button>
+          <button onClick={() => setCurrentTemplates("secondResume")}>Template 2</button>
+          <button onClick={() => setCurrentTemplates("thirdResume")}>Template 3</button>
+          <button onClick={() => setCurrentTemplates("forthResume")}>Template 4</button>
+          <button onClick={() => setCurrentTemplates("fifthResume")}>Template 5</button>
         </div>
 
-        <Resume
-          ref={resumeRef}
-          sections={sections}
-          information={resumeInformation}
-          activeColor={activeColor}
-        />
-        <ResumeTemplates2
-          ref={resumeRef}
-          sections={sections}
-          information={resumeInformation}
-          activeColor={activeColor}
-        />
-        <ResumeTemplates3
-          ref={resumeRef}
-          sections={sections}
-          information={resumeInformation}
-          activeColor={activeColor}
-        />
-        <ResumeTemplates4
-          ref={resumeRef}
-          sections={sections}
-          information={resumeInformation}
-          activeColor={activeColor}
-        />
+        <div>
+          {currentTemplates === "firstResume" && (
+            <Resume
+              ref={resumeRef}
+              sections={sections}
+              information={resumeInformation}
+              activeColor={activeColor}
+            />
+          )}
+          {currentTemplates === "secondResume" && (
+            <ResumeTemplates2
+              ref={resumeRef}
+              sections={sections}
+              information={resumeInformation}
+              activeColor={activeColor}
+            />
+          )}
+          {currentTemplates === "thirdResume" && (
+            <ResumeTemplates3
+              ref={resumeRef}
+              sections={sections}
+              information={resumeInformation}
+              activeColor={activeColor}
+            />
+          )}
+          {currentTemplates === "forthResume" && (
+            <ResumeTemplates4
+              ref={resumeRef}
+              sections={sections}
+              information={resumeInformation}
+              activeColor={activeColor}
+            />
+          )}
+          {currentTemplates === "fifthResume" && (
+            <ResumeTemplates5
+              ref={resumeRef}
+              sections={sections}
+              information={resumeInformation}
+              activeColor={activeColor}
+            />
+          )}
 
-        <ResumeTemplate5
-          ref={resumeRef}
-          sections={sections}
-          information={resumeInformation}
-          activeColor={activeColor}
-        />
 
-        <ReactToPrint
+        </div>
+
+        {/* <ReactToPrint
           trigger={() => {
             return (
               <button className="resume-button">
@@ -161,7 +165,7 @@ const Body = () => {
             );
           }}
           content={() => resumeRef.current}
-        />
+        /> */}
       </Main>
     </div>
   );
@@ -184,5 +188,22 @@ const Main = styled.div`
     width: full;
     margin: auto;
     cursor: pointer;
+  }
+
+  .templateButton{
+    margin: auto;
+    button{
+      min-height: 50px;
+      min-width: 100px;
+      margin: 10px;
+      border-radius: 10px;
+
+      &:hover{
+        cursor: pointer;
+        transform: scale(0.9);
+        background-color: #a1cecc;
+        transition: all 0.5s ease;
+      }
+    }
   }
 `;

@@ -1,7 +1,7 @@
 
 /* Container for the entire resume */
 .container {
-    max-width: 850px;
+    max-width: 900px;
     margin: 30px auto;
     padding: 25px;
     background-color: #ffffff;
@@ -71,7 +71,8 @@
   
   /* Section titles */
   .section .sectionTitle {
-    font-size: 22px;
+    font-size: 30px;
+    font-weight: bold;
     color: #343a40;
     margin-bottom: 15px;
     border-bottom: 2px solid #0073b1;

@@ -25,6 +25,12 @@
     max-width: 60%;
 }
 
+.heading {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
 .header-title {
     font-size: 2rem;
     font-weight: 700;
